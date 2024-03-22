@@ -1,0 +1,12 @@
+# Node packages
+node_modules/
+
+# output
+dist/
+
+# Development tool configuration files
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
