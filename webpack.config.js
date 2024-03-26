@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -50,6 +51,9 @@ module.exports = {
         new HtmlWebpackPlugin({ // 生成 html 
             template: './index.html', // 樣板文件，因為有預先放 GA tracking code
             filename: '../dist/index.html'
+        }),
+        new webpack.DefinePlugin({
+            API_URL: JSON.stringify('https://script.google.com/macros/s/AKfycbzcUoCyZ6_2z8A9G8au9Y1xSZt6Ebrj9sOD5OShPAHrogvGzoZ1ikvNDOlFS_5fYnXc/exec')
         })
     ],
     devServer: {
