@@ -81,7 +81,7 @@ export default ({
         dispatch(
             setLoading(true)
         );
-        const response = await fetch(`${API_URL}`, {
+        const response = await fetch(`${API_URL}?act=checkout`, {
             method: 'POST',
             headers: {
                 'content-type': 'text/plain'
@@ -94,8 +94,6 @@ export default ({
 
         const result = await response.json();
 
-        console.log({ result });
-
         if (result.message === 'success') {
             dispatch(
                 clearCart()
@@ -107,6 +105,10 @@ export default ({
 
             dispatch(
                 setAlert(t('msg_checkoutSuccess'))
+            );
+        } else {
+            dispatch(
+                setAlert(result.message)
             );
         }
     }
