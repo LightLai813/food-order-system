@@ -1,5 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import { useAppSelector } from '@/hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks';
+
+import { showCartList } from '@/store/cartSlice';
 
 import List from './List';
 
@@ -31,20 +33,27 @@ function CartIcon({
 }
 
 export default () => {
-    const [showList, setShowList] = useState(false);
+    const dispatch = useAppDispatch();
+
+    const cartListVisible = useAppSelector((state) => state.cart.cartListVisible);
+
     const handleShowList = () => {
-        setShowList(true);
+        dispatch(
+            showCartList(true)
+        );
     }
 
     const handleHideList = () => {
-        setShowList(false);
+        dispatch(
+            showCartList(false)
+        );
     }
     
     return (
         <div className="cart">
             <CartIcon onClick={handleShowList} />
             {
-                showList 
+                cartListVisible 
                 && (
                     <List hideCartList={handleHideList} />
                 )
