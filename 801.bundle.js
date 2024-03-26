@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[801],{801:(e,r,a)=>{a.r(r),a.d(r,{default:()=>t});var s=a(696);const t=function(e){var r=e.error;return e.resetErrorBoundary,s.createElement(s.Fragment,null,s.createElement("div",{className:"error-boundary-messenge"},r.message),s.createElement("pre",{className:"error-boundary-stack"},r.stack))}}}]);
