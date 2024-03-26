@@ -6,6 +6,9 @@ import { createRoot } from 'react-dom/client';
 import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 
+import { Provider } from 'react-redux';
+import { store } from './store';
+
 const Header = React.lazy(() => import('./views/Header'));
 const Error = React.lazy(() => import('./views/Error'));
 
@@ -16,6 +19,7 @@ root.render(
     <ErrorBoundary
         FallbackComponent={Error}
     >
+        <Provider store={store}>
         <Router>
             <Header />
             <Routes>
@@ -27,5 +31,6 @@ root.render(
                 />
             </Routes>
         </Router>
+        </Provider>
     </ErrorBoundary>
 );
