@@ -15,6 +15,8 @@ const Error = React.lazy(() => import('./views/Error'));
 const container = document.getElementById('app') as HTMLElement;
 const root = createRoot(container);
 
+store.dispatch(fetchCategorisAndItems());
+
 root.render(
     <ErrorBoundary
         FallbackComponent={Error}
