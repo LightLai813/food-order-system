@@ -8,8 +8,10 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 import { Provider } from 'react-redux';
 import { store } from './store';
+import fetchCategorisAndItems from './store/fetchCategorisAndItems';
 
 const Header = React.lazy(() => import('./views/Header'));
+const Menu = React.lazy(() => import('./views/Menu'));
 const Error = React.lazy(() => import('./views/Error'));
 
 const container = document.getElementById('app') as HTMLElement;
@@ -22,17 +24,17 @@ root.render(
         FallbackComponent={Error}
     >
         <Provider store={store}>
-        <Router>
-            <Header />
-            <Routes>
-                <Route path="menu" element={<div />} />
-                <Route path="history" element={<div />} />
-                <Route
-                    path="*"
-                    element={<Navigate to="/menu" replace />}
-                />
-            </Routes>
-        </Router>
+            <Router>
+                <Header />
+                <Routes>
+                    <Route path="menu" element={<Menu />} />
+                    <Route path="history" element={<div />} />
+                    <Route
+                        path="*"
+                        element={<Navigate to="/menu" replace />}
+                    />
+                </Routes>
+            </Router>
         </Provider>
     </ErrorBoundary>
 );
