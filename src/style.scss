@@ -1,0 +1,80 @@
+$color: (
+    primary: #FAB440,
+    secondary: #4E47C6,
+    background: #F9F8FD,
+    text-title: #333,
+    text-body: #555
+);
+
+
+html, body {
+    margin: 0;
+    background-color: map-get($color, background);
+    font-family: "Noto Sans", "Lato", sans-serif, "eicons";
+}
+
+header {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, .1);
+
+    nav {
+        display: flex;
+        height: 100%;
+    
+        a {
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            padding: 0 30px;
+            text-decoration: none;
+            color: map-get($color, text-body);
+
+            &::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 8px;
+                border-radius: 4px;
+                bottom: -4px;
+                left: 0;
+                background-color: map-get($color, primary);
+                transform: scaleX(0);
+                transform-origin: center;
+                transition: .3s;
+            }
+
+            &.active::after {
+                transform: scaleX(1);
+            }
+        }
+    }
+
+    .language-switch {
+        margin-left: auto;
+        margin-right: 10px;
+
+        a {
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: map-get($color, text-body);
+
+            &:hover {
+                background-color: #EEE;
+            }
+            
+            &.active {
+                background-color: #DDD;
+            }
+            
+            + a {
+                margin-left: 5px;
+            }
+        }
+    }
+}
