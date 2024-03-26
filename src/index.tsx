@@ -12,7 +12,11 @@ import fetchCategorisAndItems from './store/fetchCategorisAndItems';
 
 const Header = React.lazy(() => import('./views/Header'));
 const Menu = React.lazy(() => import('./views/Menu'));
+const Cart = React.lazy(() => import('./views/Cart'));
 const Error = React.lazy(() => import('./views/Error'));
+
+const Loading = React.lazy(() => import('./components/Loading'));
+const Alert = React.lazy(() => import('./components/Alert'));
 
 const container = document.getElementById('app') as HTMLElement;
 const root = createRoot(container);
@@ -34,7 +38,11 @@ root.render(
                         element={<Navigate to="/menu" replace />}
                     />
                 </Routes>
+                <Cart />
             </Router>
+            
+            <Alert />
+            <Loading />
         </Provider>
     </ErrorBoundary>
 );
