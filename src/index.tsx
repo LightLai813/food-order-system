@@ -1,7 +1,7 @@
 import './i18n';
 import './style.scss';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -30,20 +30,41 @@ root.render(
     >
         <Provider store={store}>
             <Router>
-                <Header />
+                <Suspense>
+                    <Header />
+                </Suspense>
                 <Routes>
-                    <Route path="menu" element={<Menu />} />
-                    <Route path="history" element={<History />} />
+                    <Route 
+                        path="menu" 
+                        element={(
+                            <Suspense>
+                                <Menu />
+                            </Suspense>
+                        )} 
+                    />
+                    <Route 
+                        path="history" 
+                        element={(
+                            <Suspense>
+                                <History />
+                            </Suspense>
+                        )} 
+                    />
                     <Route
                         path="*"
                         element={<Navigate to="/menu" replace />}
                     />
                 </Routes>
-                <Cart />
             </Router>
-            
-            <Alert />
-            <Loading />
+            <Suspense>
+                <Cart />
+            </Suspense>
+            <Suspense>
+                <Alert />
+            </Suspense>
+            <Suspense>
+                <Loading />
+            </Suspense>
         </Provider>
     </ErrorBoundary>
 );
