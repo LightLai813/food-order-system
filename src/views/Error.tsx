@@ -14,8 +14,8 @@ export default ({
 }: Error) => {
     return (
         <>
-            <div className="fos-error-boundary-messenge">{error.message}</div>
-            <pre className="fos-error-boundary-stack">{error.stack}</pre>
+            <div className="error-boundary-messenge">{error.message}</div>
+            <pre className="error-boundary-stack">{error.stack}</pre>
         </>
     );
 };
