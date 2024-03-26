@@ -10,7 +10,7 @@ i18n
     .init({
         lng: 'en',
         fallbackLng: 'en',
-        backend: { loadPath: 'https://script.google.com/macros/s/AKfycbzcUoCyZ6_2z8A9G8au9Y1xSZt6Ebrj9sOD5OShPAHrogvGzoZ1ikvNDOlFS_5fYnXc/exec?act=i18n&lng={{lng}}' },
+        backend: { loadPath: `${API_URL}?act=i18n&lng={{lng}}` },
         interpolation: { escapeValue: false },
         react: {
             bindI18n: 'languageChanged',
