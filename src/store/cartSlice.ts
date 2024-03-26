@@ -5,11 +5,13 @@ interface CartState {
     items: Array<{
         id: string,
         quantity: number
-    }>
+    }>,
+    cartListVisible: boolean
 }
 
 const initialState: CartState = {
-    items: []
+    items: [],
+    cartListVisible: false
 };
 
 const cartSlice = createSlice({
@@ -43,6 +45,19 @@ const cartSlice = createSlice({
         clearCart: (
             state: CartState
         ) => updateIn(state, ['items'], () => []),
+        buyAgain: (
+            state: CartState,
+            action: PayloadAction<
+                Array<{
+                    id: string,
+                    quantity: number
+                }>
+            >
+        ) => updateIn(state, ['items'], () => action.payload),
+        showCartList: (
+            state: CartState,
+            action: PayloadAction<boolean>
+        ) => updateIn(state, ['cartListVisible'], () => action.payload),
     }
 });
 
@@ -50,7 +65,9 @@ export const {
     addToCart,
     updateQuantity,
     removeItem,
-    clearCart
+    clearCart,
+    buyAgain,
+    showCartList
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

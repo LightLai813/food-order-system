@@ -317,6 +317,7 @@ input::-webkit-inner-spin-button {
 
 .alert {
     display: flex;
+    z-index: 5000;
     flex-direction: column;
     align-items: center;
     top: 50vh;
@@ -373,4 +374,42 @@ input::-webkit-inner-spin-button {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+.historyBlock {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    
+    + .historyBlock {
+        border-top: 1px solid #DDD;
+    }
+    .historyID {
+        font-size: 14px;
+        color: #AAA;
+        margin: 0;
+    }
+
+    ul {
+        margin: 0;
+        padding-left: 20px;
+        
+        li {
+            padding: 5px 0;
+            color: map-get($color, text-body);
+
+            span + span {
+                margin-left: 10px;
+            }
+        }
+        
+    }
+
+    .historyButtons {
+        display: flex;
+        margin-top: 10px;
+        .button + .button {
+            margin-left: 10px;
+        }
+    }
 }
