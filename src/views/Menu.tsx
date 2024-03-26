@@ -114,13 +114,8 @@ function CategoryBlock({ target } : { target: Category }) {
     )
 }
 
-
 export default () => {
     const categories = useAppSelector((state) => state.item.categories);
-
-    const items = useAppSelector((state) => state.cart.items);
-
-    console.log(items);
 
     return (
         <div className="menu">

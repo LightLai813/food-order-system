@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { updateIn } from 'immutable';
+import { updateIn, removeIn } from 'immutable';
 
 interface CartState {
     items: Array<{
-        id: String,
-        quantity: Number
+        id: string,
+        quantity: number
     }>
 }
 
@@ -13,14 +13,14 @@ const initialState: CartState = {
 };
 
 const cartSlice = createSlice({
-    name: 'root',
+    name: 'cart',
     initialState,
     reducers: {
         addToCart: (
             state: CartState, 
             action: PayloadAction<{
-                id: String,
-                quantity: Number
+                id: string,
+                quantity: number
             }>
         ) => {
             const itemIndex = state.items.findIndex(({ id }) => action.payload.id === id);
@@ -29,11 +29,28 @@ const cartSlice = createSlice({
             }
             return updateIn(state, ['items', state.items.length], () => action.payload);
         },
+        updateQuantity: (
+            state: CartState, 
+            action: PayloadAction<{
+                id: string,
+                quantity: number
+            }>
+        ) => updateIn(state, ['items', state.items.findIndex(({ id }) => action.payload.id === id), 'quantity'], () => action.payload.quantity),
+        removeItem: (
+            state: CartState, 
+            action: PayloadAction<string>
+        ) => removeIn(state, ['items', state.items.findIndex(({ id }) => action.payload === id)]),
+        clearCart: (
+            state: CartState
+        ) => updateIn(state, ['items'], () => []),
     }
 });
 
 export const { 
-    addToCart
+    addToCart,
+    updateQuantity,
+    removeItem,
+    clearCart
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -1,10 +1,14 @@
 import { Dispatch } from 'redux';
 import { setCategories, setFoodItems } from './itemSlice';
+import { setLoading } from './loadingSlice';
 
 export default () => {
     return async (dispatch: Dispatch) => {
         try {
-            // 使用 Promise.all 發送兩個 API 請求並等待它們的回應
+            dispatch(
+                setLoading(true)
+            );
+            
             const responses = await Promise.all([
                 fetch(`${API_URL}?act=categories`),
                 fetch(`${API_URL}?act=items`),
@@ -19,6 +23,10 @@ export default () => {
 
             dispatch(
                 setFoodItems(foodItems)
+            );
+
+            dispatch(
+                setLoading(false)
             );
 
         } catch (error) {

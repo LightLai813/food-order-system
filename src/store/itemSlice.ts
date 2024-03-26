@@ -14,16 +14,13 @@ const initialState: ItemState = {
 };
 
 const itemSlice = createSlice({
-    name: 'root',
+    name: 'item',
     initialState,
     reducers: {
         setCategories: (
             state: ItemState, 
             action: PayloadAction<Array<Category>>
-        ) => {
-            console.log(action.payload);
-            return updateIn(state, ['categories'], () => action.payload)
-        },
+        ) => updateIn(state, ['categories'], () => action.payload),
         setFoodItems: (
             state: ItemState, 
             action: PayloadAction<Array<FoodItem>>
