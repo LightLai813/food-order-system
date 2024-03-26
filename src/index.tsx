@@ -12,6 +12,7 @@ import fetchCategorisAndItems from './store/fetchCategorisAndItems';
 
 const Header = React.lazy(() => import('./views/Header'));
 const Menu = React.lazy(() => import('./views/Menu'));
+const History = React.lazy(() => import('./views/History'));
 const Cart = React.lazy(() => import('./views/Cart'));
 const Error = React.lazy(() => import('./views/Error'));
 
@@ -32,7 +33,7 @@ root.render(
                 <Header />
                 <Routes>
                     <Route path="menu" element={<Menu />} />
-                    <Route path="history" element={<div />} />
+                    <Route path="history" element={<History />} />
                     <Route
                         path="*"
                         element={<Navigate to="/menu" replace />}
