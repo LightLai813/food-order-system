@@ -27,8 +27,8 @@ function ItemBlock({ id, name, pic }: FoodItem) {
         buyQuantity.current = 1;
         setShowQuantityModifier({
             pos: {
-                x: e.clientX,
-                y: e.clientY
+                x: e.clientX - 160,
+                y: e.clientY - 90
             }
         });
     }
@@ -70,6 +70,7 @@ function ItemBlock({ id, name, pic }: FoodItem) {
                 showQuantityModifier
                 && (
                     <PopUpWindow
+                        displayCompletely={true}
                         style={{
                             left: `${showQuantityModifier.pos.x}px`,
                             top: `${showQuantityModifier.pos.y}px`
