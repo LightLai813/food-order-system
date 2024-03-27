@@ -52,7 +52,7 @@ function ItemBlock({ id, name, pic }: FoodItem) {
     }
 
     return (
-        <div key={id}>
+        <div className="item">
             <div 
                 className="itemPic"
                 style={{
@@ -96,7 +96,7 @@ function ItemBlock({ id, name, pic }: FoodItem) {
 }
 
 function CategoryBlock({ target } : { target: Category }) {
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
     const items = useAppSelector((state) => state.item.items);
 
     return (
@@ -110,6 +110,7 @@ function CategoryBlock({ target } : { target: Category }) {
                             <ItemBlock key={item.id} {...item} /> 
                         ))
                 }
+                <div className="noItemsMsg">{t('msg_categoryNoItems')}</div>
             </div>
         </div>
     )
