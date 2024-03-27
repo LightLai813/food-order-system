@@ -69,7 +69,11 @@ function HistoryBlock({
 
     const handleBuyAgain = () => {
         dispatch(
-            buyAgain(order)
+            buyAgain(
+                order.filter(({ id }) => (
+                    items.find((item) => item.id === id)
+                ))
+            )
         );
 
         dispatch(
@@ -87,11 +91,14 @@ function HistoryBlock({
                     order.map((orderItem) => {
                         const targetItem = items.find((item) => item.id === orderItem.id);
 
-                        if (!targetItem) return null;
                         return (
-                            <li key={orderItem.id}>
-                                <span className="historyItemName">{targetItem.name[i18n.language]}</span>
+                            <li 
+                                key={orderItem.id}
+                                className={!targetItem ? 'noLongerForSale' : ''}
+                            >
+                                <span className="historyItemName">{targetItem?.name[i18n.language] || orderItem.id}</span>
                                 <span className="historyItemQuantity">x{orderItem.quantity}</span>
+                                {!targetItem && <span className="noLongerForSaleMsg">({t('msg_noLongerForSale')})</span>}
                             </li>
                         )
                     })
