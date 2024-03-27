@@ -55,3 +55,6 @@ Google Apps Script: https://script.google.com/u/0/home/projects/1uOtwb6lqCQcijyg
 - POST
     - `?act=checkout`: Record user orders.
     - `?act=delete_history`: Delete user order history.
+
+## Pending items
+- Cypress E2E testing/ Mocks server

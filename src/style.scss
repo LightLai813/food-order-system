@@ -101,7 +101,7 @@ header {
         display: flex;
         flex-wrap: wrap;
 
-        > div {
+        .item {
             display: flex;
             flex-direction: column;
             flex: 0 0 150px;
@@ -124,6 +124,15 @@ header {
             .addToCart {
                 margin-top: auto;
             }
+        }
+
+        .noItemsMsg {
+            color: map-get($color, text-body);
+            padding: 20px;
+        }
+
+        .item + .noItemsMsg {
+            display: none;
         }
     }
 }
@@ -400,6 +409,15 @@ input::-webkit-inner-spin-button {
 
             span + span {
                 margin-left: 10px;
+            }
+
+            &.noLongerForSale {
+                opacity: .4;
+                position: relative;
+
+                .noLongerForSaleMsg {
+                    font-size: 12px;
+                }
             }
         }
         

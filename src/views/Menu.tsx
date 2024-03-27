@@ -27,8 +27,8 @@ function ItemBlock({ id, name, pic }: FoodItem) {
         buyQuantity.current = 1;
         setShowQuantityModifier({
             pos: {
-                x: e.clientX,
-                y: e.clientY
+                x: e.clientX - 160,
+                y: e.clientY - 90
             }
         });
     }
@@ -52,7 +52,7 @@ function ItemBlock({ id, name, pic }: FoodItem) {
     }
 
     return (
-        <div key={id}>
+        <div className="item">
             <div 
                 className="itemPic"
                 style={{
@@ -70,6 +70,7 @@ function ItemBlock({ id, name, pic }: FoodItem) {
                 showQuantityModifier
                 && (
                     <PopUpWindow
+                        displayCompletely={true}
                         style={{
                             left: `${showQuantityModifier.pos.x}px`,
                             top: `${showQuantityModifier.pos.y}px`
@@ -95,7 +96,7 @@ function ItemBlock({ id, name, pic }: FoodItem) {
 }
 
 function CategoryBlock({ target } : { target: Category }) {
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
     const items = useAppSelector((state) => state.item.items);
 
     return (
@@ -109,6 +110,7 @@ function CategoryBlock({ target } : { target: Category }) {
                             <ItemBlock key={item.id} {...item} /> 
                         ))
                 }
+                <div className="noItemsMsg">{t('msg_categoryNoItems')}</div>
             </div>
         </div>
     )
