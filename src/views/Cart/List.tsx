@@ -78,6 +78,8 @@ export default ({
     const cartItems = useAppSelector((state) => state.cart.items);
 
     const handleCheckout = async () => {
+        if (cartItems.length === 0) return;
+        
         dispatch(
             setLoading(true)
         );
@@ -135,6 +137,7 @@ export default ({
                 >{t('button_cancel')}</Button>
                 <Button
                     onClick={handleCheckout}
+                    disable={cartItems.length === 0}
                 >{t('button_checkout')}</Button>
             </div>
         </PopUpWindow>
