@@ -202,6 +202,12 @@ header {
         color: #999;
         background-color: #EEE;
     }
+
+    &.button-disable {
+        pointer-events: none;
+        filter: grayscale(1);
+        opacity: .5;
+    }
 }
 
 .quantitySelector {
