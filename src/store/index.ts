@@ -1,18 +1,24 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import itemReducer from './itemSlice';
 import cartReducer from './cartSlice';
 import loadingReducer from './loadingSlice';
 import alertReducer from './alertSlice';
 
-export const store = configureStore({
-    reducer: {
-        item: itemReducer,
-        cart: cartReducer,
-        loading: loadingReducer,
-        alert: alertReducer
-    },
+const rootReducer = combineReducers( {
+    item: itemReducer,
+    cart: cartReducer,
+    loading: loadingReducer,
+    alert: alertReducer
 });
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export function setupStore(preloadedState?: Partial<RootState>) {
+    return configureStore({
+        reducer: rootReducer,
+        preloadedState
+    })
+}
+
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof setupStore>
+export type AppDispatch = AppStore['dispatch'];

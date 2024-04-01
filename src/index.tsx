@@ -7,7 +7,8 @@ import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { Provider } from 'react-redux';
-import { store } from './store';
+import { setupStore } from './store';
+const store = setupStore();
 import fetchCategorisAndItems from './store/fetchCategorisAndItems';
 
 const Header = React.lazy(() => import('./views/Header'));
