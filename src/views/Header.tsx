@@ -15,6 +15,7 @@ export default () => {
                         className={location.pathname === `/${page}` ? 'active' : ''}
                         key={page} 
                         to={page}
+                        data-testid={`page_${page}`}
                     >{t(`page_${page}`)}</Link>
                 ))
             }
