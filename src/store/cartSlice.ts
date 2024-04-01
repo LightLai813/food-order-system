@@ -9,7 +9,7 @@ interface CartState {
     cartListVisible: boolean
 }
 
-const initialState: CartState = {
+export const initialState: CartState = {
     items: [],
     cartListVisible: false
 };

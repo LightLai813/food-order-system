@@ -8,7 +8,7 @@ interface ItemState {
     items: Array<FoodItem>
 }
 
-const initialState: ItemState = {
+export const initialState: ItemState = {
     categories: [],
     items: []
 };
